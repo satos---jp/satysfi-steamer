@@ -157,6 +157,9 @@ end = struct
            ; `mod`; `not`; `true`; `false`
            ; `controls`; `and`; `cycle`
            ; `inline-cmd`; `block-cmd`; `math-cmd`; `when`
+           
+           ; `open`
+%           ; `int`; `unit`; `string`
            ]
      ; primitives =
            [ `acos`; `arabic`; `asin`; `atan2`; `atan`; `bezier-to`; `block-frame-breakable`
@@ -350,10 +353,10 @@ end = struct
         let fontsize = get-font-size ctx in
         let charwid = get-natural-width (read-inline ctx {0}) in
         let ctx-code =
-          ctx |> set-font Latin (`Menlo`, 1., 0.)
-              |> set-font Kana  (`Osaka`, .88, 0.)
-              |> set-font HanIdeographic  (`Osaka`, .88, 0.)
-              |> set-space-ratio (charwid /' fontsize)
+          ctx |> set-font Latin (`lmmono`, 1., 0.)
+              |> set-font Kana  (`Junicode`, .88, 0.)
+              |> set-font HanIdeographic  (`Junicode`, .88, 0.)
+              |> set-space-ratio (charwid /' fontsize) 0.0 0.0
         in
    
         let lstraw = split-into-lines code in
@@ -387,7 +390,7 @@ end = struct
       decoset-code
       default-coloring
       empty-syntax
-      (ctx |> set-font Latin (`Menlo`, .8, 0.))
+      (ctx |> set-font Latin (`lmmono`, .8, 0.))
       code
 
   let-block ctx +hcode ?:size ?:mcol ?:msynt code =
@@ -402,7 +405,7 @@ end = struct
       decoset-code
       col
       synt
-      (ctx |> set-font Latin (`Menlo`, .8, 0.)) code
+      (ctx |> set-font Latin (`lmmono`, .8, 0.)) code
 
   let-block ctx +console ?:size code =
     let coloring = make-simple-theme Color.white in
@@ -411,7 +414,7 @@ end = struct
       decoset-console
       coloring
       empty-syntax
-      (ctx |> set-font Latin (`Menlo`, .8, 0.))
+      (ctx |> set-font Latin (`lmmono`, .8, 0.))
       code
 
   let name-context ctx =
@@ -446,6 +449,6 @@ end = struct
     let synt = match msynt with
                | Some(syn) -> syn
                | None      -> empty-syntax in
-    highlight (ctx |> set-font Latin (`Menlo`, .8, 0.)) col synt src
+    highlight (ctx |> set-font Latin (`lmmono`, .8, 0.)) col synt src
 
 end

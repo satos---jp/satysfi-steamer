@@ -124,14 +124,14 @@ end = struct
   let append l r = Cat([l ; r])
   let not-followed-by pg = NotFollowedBy(pg)
   let not-in-class str = append (not-followed-by (in-class str)) any-char
-  let eol = choice (in-class (string-unexplode [10 ; 13])) eos
+  let eol = Choices([InClass(`\n\r`);eos])
   let alpha = Alpha
   let digit = Digit
   let alphanum = AlphaNum
   let regexp re  = RegExp(re)
   let char-but p = append (not-followed-by p) any-char
-  let spaces  = many (in-class (string-unexplode [9; 10; 12; 32]))
-  let spaces1 = some (in-class (string-unexplode [9; 10; 12; 32]))
+  let spaces  = Many(InClass(`\t\n `))
+  let spaces1 = Cat([InClass(`\t\n `);Many(InClass(`\t\n `))])
 
   let string-empty = string-unexplode []
 

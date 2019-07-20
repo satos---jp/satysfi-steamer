@@ -33,7 +33,7 @@ let-math \patas p x =
 let-math \constrapp m1 m2 = ${#m1 \math-skip!(4pt) #m2}
 
 let-math \tuple mlst =
-  let inner = Math.concat ${,} mlst in
+  let inner = math-concat ${,} mlst in
     math-color synt-color ${\paren{\math-skip!(2pt)#inner\math-skip!(1pt)}}
 
   let greek-lowercase cp cpb =
@@ -66,8 +66,8 @@ let-math \exprabsB x e =
   ${\synt-color{\lambda^{\mathrm{B}}}#x\token!{.\ }#e}
 
 let-math \valB m =
-  ${\synt-color{\angle{#m}}}
+  ${\synt-color{\angle-bracket{#m}}}
 
 let-math \BNF nontm mlst =
-  let defs = Math.concat ${\|} mlst in
+  let defs = math-concat ${\|} mlst in
     ${#nontm \mathrel{: : =} #defs}

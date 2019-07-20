@@ -104,9 +104,9 @@ end = struct
   let paper-height = 9.6cm
   let header-height = 12pt
   let footer-height = 12pt
-  let text-horizontal-margin = 1cm
+  let text-horizontal-margin = 0.7cm
   let text-vertical-margin = font-size-normal *' .5
-  let text-height = paper-height -' text-vertical-margin *' 2. -' footer-height -' header-height
+  let text-height = paper-height % -' text-vertical-margin *' 2. -' footer-height -' header-height
   let text-width  = paper-width -' text-horizontal-margin *' 2.
   let text-origin = (text-horizontal-margin, header-height)
 
@@ -118,7 +118,7 @@ end = struct
 
   let font-latin-roman  = (`Junicode`   , font-ratio-latin, 0.)
   let font-latin-italic = (`Junicode-it`, font-ratio-latin, 0.)
-  let font-latin-sans   = (`Helvetica-Black`    , font-ratio-latin, 0.)
+  let font-latin-sans   = (`Junicode`    , font-ratio-latin, 0.)
   let font-cjk-mincho   = (`ipaexm`    , font-ratio-cjk  , 0.)
   let font-cjk-gothic   = (`ipaexg`    , font-ratio-cjk  , 0.)
 
@@ -592,14 +592,14 @@ let title-deco =
   let-inline ctx \verb inner =
     let ctx2 = ctx
         |> set-dominant-narrow-script Latin
-        |> set-font Latin (`Menlo`, .8, 0.)
+        |> set-font Latin (`Junicode`, .8, 0.)
         |> set-text-color Color.orange
     in read-inline ctx2 (embed-string inner)
 
   let-inline ctx \url inner =
     let ctx-url =
        ctx |> set-dominant-narrow-script Latin
-           |> set-font Latin (`Menlo`, .8, 0.)
+           |> set-font Latin (`Junicode`, .8, 0.)
     in
     let deco _ _ _ _ = []
     in inline-frame-breakable (2pt, 2pt, 2pt, 2pt)

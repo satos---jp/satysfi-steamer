@@ -15,7 +15,7 @@ end = struct
    | f (x :: []) = x
    | f (x :: xs) = f x (fold-right-1 f xs)
 
-  let length = fold-right (fun _ a -> a + 1) 0
+  let length v = fold-right (fun _ a -> a + 1) 0 v
 
   let any p = fold-right (fun l b -> p l || b) false
 
@@ -23,5 +23,5 @@ end = struct
   | 0 a = []
   | n a = a :: replicate (n - 1) a
 
-  let concat = fold-right List.append []
+  let concat v = fold-right List.append [] v
 end

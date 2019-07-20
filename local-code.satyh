@@ -73,9 +73,9 @@ end = struct
         let fontsize = get-font-size ctx in
         let charwid = get-natural-width (read-inline ctx {0}) in
         let ctx-code =
-          ctx |> set-font Latin (`Menlo`, 1., 0.)
-              |> set-font Kana  (`Osaka`, .88, 0.)
-              |> set-font HanIdeographic  (`Osaka`, .88, 0.)
+          ctx |> set-font Latin (`Junicode`, 1., 0.)
+              |> set-font Kana  (`Junicode`, .88, 0.)
+              |> set-font HanIdeographic  (`Junicode`, .88, 0.)
               |> set-space-ratio (charwid /' fontsize)
         in
    
